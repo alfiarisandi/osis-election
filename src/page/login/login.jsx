@@ -5,11 +5,11 @@ import './login.css'
 export default function Login() {
   return (
     <div className='container'>
-        <div className='header'>
+        <div className='header-login'>
             <h1 className='text-center mt-5'>Hallo !</h1>
             <h4 className='text-center text-secondary mt-3'>Silahkan login dengan benar</h4>
         </div>
-        <div className='content'>
+        <div className='content-login'>
             <div className='form'>
                 <label htmlFor="nis" className='align-self-start fw-bold'>Nomor Induk Sekolah</label>
                 <input type="text" className='form-control m-2' id='nis' placeholder='Masukan Nomor Induk Sekolah'/>

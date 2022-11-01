@@ -1,0 +1,106 @@
+.container{
+    padding-left: 0px !important;
+}
+.content{
+    height: 100vh;
+    background: linear-gradient(180deg, #FFF80A 6.53%, #FFFFFF 102%);
+    border-radius: 30px 30px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header{
+    margin-top: 20px;
+    margin-left: 20px;
+    color:  #293462;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.scroll-overflow{
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap; 
+    display: flex;
+}
+
+.kandidat{
+    margin-top: 20px;
+    padding-right: 15px;
+    filter: drop-shadow(0px 6px 8px rgba(0, 0, 0, 0.25));
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+}
+
+.info-kandidat{
+    width: 225px;
+    height: 290px;
+    margin-left: 15px;
+}
+
+.foto-kandidat{
+    width: 225px;
+    height: 260px;
+    background-color: gray;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: absolute;
+}
+.overlay-foto{
+    width: 225px;
+    height: 195px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.01) 0%, #242423 94.09%);
+    border-radius: 15px;
+    position: absolute ;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.nomor-urut{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.nama-calon{
+    margin-left: 10px;
+    height: 40px;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    display: block;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.visi-misi-kandidat{
+    position: absolute;
+    bottom: 15px;
+    width: 225px;
+    height: 30px;
+    border-radius: 15px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.visi-misi-bg{
+    width: 115px;
+    height: 30px;
+    background-color: #293462;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
