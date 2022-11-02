@@ -3,7 +3,7 @@ import './header.css'
 
 export default function Header() {
   return (
-    <div className='d-flex flex-row justify-content-between align-items-center mt-4 mb-5'>
+    <div className='d-flex flex-row justify-content-between align-items-center mt-4 mb-4'>
         <div className='rounded-left ms-1'>
             <img src={require('../../img/logo-smk-1-pwt.png')} alt="logo-seklolah" />
         </div>

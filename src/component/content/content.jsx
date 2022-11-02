@@ -78,6 +78,17 @@ function Content() {
                 </div>
             </div>
         </div>
+        <div className='qoutes'>
+            <div className='isi-quotes'>
+                <span className='text-center p-2'> Lorem Ipsum is simply dummy 
+                    text of the printing and typesetting 
+                    industry. Lorem Ipsum has been 
+                    the industry's standard dummy </span>
+            </div>
+            <div className='header-quotes'>
+                <span className='text-center fw-bolder'>Quotes</span>
+            </div>
+        </div>
         
     </div>
   )
