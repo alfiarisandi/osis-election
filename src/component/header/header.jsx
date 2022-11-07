@@ -3,19 +3,22 @@ import './header.css'
 
 export default function Header() {
   return (
-    <div className='d-flex flex-row justify-content-between align-items-center mt-4 mb-4'>
-        <div className='rounded-left ms-1'>
-            <img src={require('../../img/logo-smk-1-pwt.png')} alt="logo-seklolah" />
+    <div className='d-flex flex-row justify-content-between align-items-center mt-4 '>
+        <div className='bg-header'>
+            <img src={require("../../img/bg-header.png")} alt=""  />
         </div>
-        <div className='rounded-right'>
-            <div className='circle'>
-                <img src={require('../../img/profil.jpg')} alt="" srcset="" className='img-profil'/>
+        <div className='header-home'>
+            <div className='rounded-right-home'>
+                <div className='user-info'>
+                    <span className='fw-bold text-white'>Alfi Arisandi</span>
+                    <span className='fw-light text-white'>Siswa</span>
+                </div>
             </div>
-            <div className='user-info'>
-                <span className='fw-bold'>Alfi Arisandi</span>
-                <span className='fw-light text-secondary'>Siswa</span>
+            <div className='circle-home'>
+                    <img src={require('../../img/profil.jpg')} alt="" className='img-profil'/>
             </div>
         </div>
-    </div>
+        
+     </div>
   )
 }

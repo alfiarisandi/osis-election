@@ -2,6 +2,20 @@
     padding-right: 0px !important;
 }
 
+.bg-header{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    overflow: hidden;
+}
+
+.header-home{
+    width: 200px;
+    height: 60px;
+    margin-left: 10px;
+}
+
 .rounded-left{
     width: 45px;
     height: 45px;
@@ -20,6 +34,17 @@
     flex-direction: row;
     align-items: center;
 }
+.rounded-right-home{
+    width: 250px;
+    height: 58px;
+    background: #003566;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    left: 50px;
+}
 
 .circle{
     width: 45px;
@@ -33,6 +58,18 @@
     text-align: center;
     justify-content: center;
 }
+.circle-home{
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 100%;
+    display: flex;
+    background-position: center center;
+    overflow: hidden;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+}
 
 .img.profil{
     align-self: center;
@@ -42,7 +79,7 @@
     width: 190px;
     display: flex;
     flex-direction: column;
-    margin-left: 15px;
+    margin-left: 35px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden; 

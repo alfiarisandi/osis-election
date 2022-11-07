@@ -1,8 +1,14 @@
 import  Button  from 'react-bootstrap/Button'
 import React from 'react'
 import './login.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
+    let navigate = useNavigate()
+
+    const login = () => {
+        return navigate('/home')
+    }
   return (
     <div className='container'>
         <div className='header-login'>
@@ -17,7 +23,7 @@ export default function Login() {
                 <input type="password" className='form-control m-2' id='password' placeholder='Masukan Password'/>
             </div>
             <div className='buttons'>
-                <Button variant='primary' className='me-2'>Login</Button>
+                <Button variant='primary' className='me-2' onClick={()=>login()}>Login</Button>
                 <Button variant='danger' >Cancel</Button>
             </div>
         </div>

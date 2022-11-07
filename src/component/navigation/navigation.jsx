@@ -1,7 +1,5 @@
 import React from 'react'
-import {AiOutlineHome, AiOutlineInfoCircle} from 'react-icons/ai'
-import {CgUserList} from 'react-icons/cg'
-import {ImPushpin} from 'react-icons/im'
+import { Icon } from '@iconify/react';
 import './navigation.css'
 
 function Navigation() {
@@ -9,16 +7,18 @@ function Navigation() {
     <div className='navigation'>
         <div className='navigation-bar'>
             <div className='d-flex align-items-center'>
-                <img src={require('../../img/Subtract.png')} alt="" className='position-absolute top-0' style={{width :'100%', height : '75px'}}/>
-                <div className='nav-icons'>
-                    <AiOutlineHome size={38} color="black"/>
-                    <AiOutlineInfoCircle size={38} color="#A2B5BB"/>
-                    <CgUserList size={38} color="#A2B5BB"/>
+                <div className='bg-navigation'>
+                    <div className='nav-icons'>
+                        <Icon icon="ant-design:home-filled" width='35' color='#003566' />
+                        <Icon icon="carbon:warning" width='35' color='#003566' />
+                        <Icon icon="fluent:people-list-16-regular" width='40' color='#003566' />
+                    </div>
                 </div>
+                
             </div>
         </div>
         <div className='button-election'>
-            <ImPushpin size={38} color="white"/>
+        <Icon icon="fluent:vote-20-regular" width="50" color='white'/>
         </div>
     </div>
   )
