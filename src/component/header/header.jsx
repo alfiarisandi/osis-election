@@ -9,7 +9,7 @@ export default function Header() {
         </div>
         <div className='header-home'>
             <div className='rounded-right-home'>
-                <div className='user-info'>
+                <div className='user-info-home'>
                     <span className='fw-bold text-white'>Alfi Arisandi</span>
                     <span className='fw-light text-white'>Siswa</span>
                 </div>
