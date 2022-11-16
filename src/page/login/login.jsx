@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import { useState } from 'react'
 
-export default function Login() {
+function Login() {
     let navigate = useNavigate()
 
     const [showPassword, setShowPassword] = useState(false)
 
-    const login = () => {
+    const handleLogin = () => {
         return navigate('/home')
     }
   return (
@@ -41,9 +41,11 @@ export default function Login() {
                 </div>
             </div>
             <div className='buttons'>
-                <button className='button-login' onClick={()=>login()}>Login</button>
+                <button className='button-login' onClick={()=>handleLogin()}>Login</button>
             </div>
         </div>
     </div>
   )
 }
+
+export default Login
