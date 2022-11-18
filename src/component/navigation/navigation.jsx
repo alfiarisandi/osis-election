@@ -13,9 +13,9 @@ function Navigation() {
     const handleInfo = () => {
         navigate('/informasi')
     }
-    // const handleUserinfo = () => {
-    //     navigate('/user-info')
-    // }
+    const handleUserinfo = () => {
+        navigate('/user-info')
+    }
   return (
     <div className='navigation'>
         <div className='navigation-bar'>
@@ -27,7 +27,7 @@ function Navigation() {
                                 <>
                                     <Icon icon="ant-design:home-filled" width='35' color='#003566' onClick={() => handleHome()}/>
                                     <Icon icon="bi:exclamation-circle" width='35' color='#003566' onClick={() => handleInfo()}/>
-                                    <Icon icon="fluent:people-list-16-regular" width='40' color='#003566' />
+                                    <Icon icon="fluent:people-list-16-regular" width='40' color='#003566' onClick={() => handleUserinfo()}/>
                                 </>
                             )
                         }{
@@ -35,7 +35,7 @@ function Navigation() {
                                 <>
                                     <Icon icon="ant-design:home" width='35' color='#003566' onClick={() => handleHome()}/>
                                     <Icon icon="bi:exclamation-circle-fill" width='35' color='#003566' onClick={() => handleInfo()}/>
-                                    <Icon icon="fluent:people-list-16-regular" width='40' color='#003566' />
+                                    <Icon icon="fluent:people-list-16-regular" width='40' color='#003566' onClick={() => handleUserinfo()}/>
                                 </>
                             )
                         }
@@ -44,7 +44,7 @@ function Navigation() {
                                 <>
                                     <Icon icon="ant-design:home" width='35' color='#003566' onClick={() => handleHome()}/>
                                     <Icon icon="bi:exclamation-circle" width='35' color='#003566' onClick={() => handleInfo()}/>
-                                    <Icon icon="fluent:people-list-16-regular-filled" width='40' color='#003566' />
+                                    <Icon icon="fluent:people-list-16-filled" width='40' color='#003566' onClick={() => handleUserinfo()}/>
                                 </>
                             )
                         }

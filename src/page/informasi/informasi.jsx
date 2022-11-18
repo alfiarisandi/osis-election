@@ -6,9 +6,11 @@ import Navigation from '../../component/navigation/navigation'
 function Informasi() {
   return (
     <>
+    <div className='container'>
         <Header/>
         <Contentinformasi/>
         <Navigation/>
+    </div>
     </>
   )
 }

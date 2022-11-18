@@ -11,7 +11,7 @@ function Contentinformasi() {
     // const [openinfo5, setOpeninfo5] = useState(false)
   return (
     <div className='content-informasi'>
-        <h5 className='ms-3 me-3 mt-5 fw-bold text-black'>Pemilihan Ketua dan Wakil Ketua OSIS</h5>
+        <h5 className='ms-3 me-3 mt-5 fw-bold text-black'>Informasi Pemilihan Ketua dan Wakil Ketua OSIS</h5>
         <div className='isi-informasi'>
             <div className='title-informasi'>
                 <div className='heading-info' onClick={() => setOpeninfo1(!openinfo1)} aria-controls="info-1" aria-expanded={openinfo1}>
@@ -39,6 +39,7 @@ function Contentinformasi() {
                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                             terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
                             labore wes anderson cred nesciunt sapiente ea proident.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quam. Aperiam quo tempora rem, illum modi ea ab atque, maxime enim fugiat quisquam reiciendis magni soluta dolores culpa delectus rerum!
                         </span>
                     </div>
                 </Collapse>

@@ -39,7 +39,6 @@
     bottom: 0px;
     background-color: white;
     filter: drop-shadow(2px 4px 17px rgba(62, 61, 61, 0.4));
-    border-radius: 15px 15px 0px 0px;
     display: flex;
     align-items: center;
 }
