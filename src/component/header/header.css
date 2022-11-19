@@ -96,3 +96,13 @@
     white-space: nowrap;
     overflow: hidden; 
 }
+
+.user-info-home{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 35px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+}

@@ -1,4 +1,7 @@
+import { Icon } from '@iconify/react';
 import React from 'react'
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 import { useLocation } from 'react-router-dom';
 import './header.css'
 
@@ -18,7 +21,8 @@ function Header(props) {
                             {
                                 props.loadDataNamaUser? (
                                     <>
-                                    
+                                        <Skeleton width="80%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                        <Skeleton width="80%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
                                     </>
                                 ) : (
                                     <>
@@ -27,11 +31,10 @@ function Header(props) {
                                     </>
                                 )
                             }
-                            
                         </div>
                     </div>
                     <div className='circle-home'>
-                            <img src={require('../../img/profil.jpg')} alt="" className='img-profil'/>
+                            <Icon icon="mdi:user-circle-outline" color='#003566' width="60"/>
                     </div>
                 </div>
             </>

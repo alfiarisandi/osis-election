@@ -32,6 +32,7 @@ function Userinfo() {
                     timer: 1000
                 })
                 localStorage.removeItem("id_siswa")
+                localStorage.removeItem("id_sekolah")
                 cookies.remove("auth")
                 setTimeout(() => navigate('/'), 1000)
                 

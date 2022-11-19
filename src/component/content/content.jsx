@@ -6,9 +6,7 @@ import Infokandidat from '../infokandidat/infokandidat';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
-
-function Content() {
+function Content(props) {
 
     const data = {
         labels: [],
@@ -30,13 +28,13 @@ function Content() {
     <div className='content'>
         <div className='header'>
             <span className='fw-bolder fs-5'>Kandidat Ketua Osis</span>
-            <span className='fw-light fs-5'>Tahun Ajaran 2022/2023</span>
+            <span className='fw-bolder fs-5'>{props.namaSekolah}</span>
+            <span className='fw-light fs-5'>Tahun Ajaran {props.tahunAjar}</span>
         </div>
         <div className='scroll-overflow'>
 
             <div className='kandidat'>
-                <Infokandidat />
-                <Infokandidat/>
+                <Infokandidat kandidatHome = {props.kandidatHome?.kandidat} />
             </div>
         </div>
         <div className='reporting'>

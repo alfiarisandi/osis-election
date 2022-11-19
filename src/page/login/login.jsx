@@ -54,6 +54,7 @@ function Login() {
             })
             cookies.set("auth", true, {path: "/"})
             localStorage.setItem('id_siswa', data.siswa[0].id_siswa)
+            localStorage.setItem('id_sekolah', data.siswa[0].id_sekolah)
             setTimeout(() => navigate('/home'), 1300)   
             
         }
