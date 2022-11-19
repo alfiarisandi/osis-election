@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import './header.css'
 
-export default function Header() {
+function Header(props) {
     const location = useLocation();
   return (
     <div className='d-flex flex-row justify-content-between align-items-center mt-4 '>
@@ -15,8 +15,19 @@ export default function Header() {
                 <div className='header-home'>
                     <div className='rounded-right-home'>
                         <div className='user-info'>
-                            <span className='fw-bold text-white'>Alfi Arisandi</span>
-                            <span className='fw-light text-white'>Siswa</span>
+                            {
+                                props.loadDataNamaUser? (
+                                    <>
+                                    
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className='fw-bold text-white'>{props.dataNamaUser?.siswa[0].nama}</span>
+                                        <span className='fw-light text-white'>Siswa {props.dataNamaUser?.siswa[0].kelas}</span>
+                                    </>
+                                )
+                            }
+                            
                         </div>
                     </div>
                     <div className='circle-home'>
@@ -29,3 +40,5 @@ export default function Header() {
      </div>
   )
 }
+
+export default Header

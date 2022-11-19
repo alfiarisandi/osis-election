@@ -61,7 +61,7 @@
 }
 .overlay-foto{
     width: 225px;
-    height: 195px;
+    height: 260px;
     background: linear-gradient(180deg, rgba(196, 196, 196, 0.01) 0%, #242423 94.09%);
     border-radius: 15px;
     position: absolute ;
@@ -93,6 +93,57 @@
     display: flex;
     align-items: center;
     margin-bottom: 30px;
+}
+
+.info-kandidat-pemilihan{
+    width: 160px;
+    height: 200px;
+}
+
+.foto-kandidat-pemilihan{
+    width: 160px;
+    height: 200px;
+    background-color: gray;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: absolute;
+}
+
+.overlay-foto-pemilihan{
+    width: 160px;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.01) 0%, #242423 94.09%);
+    border-radius: 15px;
+    position: absolute ;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.nomor-urut-pemilihan{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.nama-calon-pemilihan{
+    margin-left: 10px;
+    height: 40px;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    display: block;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .visi-misi-kandidat{

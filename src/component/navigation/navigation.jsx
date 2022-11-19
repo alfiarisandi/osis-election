@@ -16,6 +16,9 @@ function Navigation() {
     const handleUserinfo = () => {
         navigate('/user-info')
     }
+    const handlePagePilihCalon = () => {
+        navigate('/pilih-calon')
+    }
   return (
     <div className='navigation'>
         <div className='navigation-bar'>
@@ -55,7 +58,7 @@ function Navigation() {
             </div>
         </div>
         <div className='button-election'>
-        <Icon icon="fluent:vote-20-regular" width="50" color='white'/>
+        <Icon icon="fluent:vote-20-regular" width="50" color='white' onClick={() => handlePagePilihCalon()}/>
         </div>
     </div>
   )

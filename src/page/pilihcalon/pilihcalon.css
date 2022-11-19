@@ -1,0 +1,11 @@
+.tombol-pilih{
+    border: none;
+    width: 100%;
+    background-color: #003566;
+    padding: 8px;
+    border-radius: 12px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

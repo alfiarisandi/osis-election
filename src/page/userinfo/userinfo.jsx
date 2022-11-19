@@ -1,12 +1,45 @@
 import { Icon } from '@iconify/react'
 import React from 'react'
 import  Table  from 'react-bootstrap/Table'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import Cookies from 'universal-cookie'
 import Header from '../../component/header/header'
 import Navigation from '../../component/navigation/navigation'
 import "./userinfo.css"
 
+
 function Userinfo() {
     const statusmemilih = false;
+    const navigate = useNavigate();
+    const cookies = new Cookies()
+
+    const handleLogout = () => {
+        Swal.fire({
+            title: 'Kamu yakin untuk keluar?',
+            showCancelButton: true,
+            cancelButtonColor: '#FF0000',
+            confirmButtonColor: '#003566',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak',
+            reverseButtons: true
+        }).then((result) =>
+        {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    showConfirmButton :false,
+                    icon : "success",
+                    timer: 1000
+                })
+                localStorage.removeItem("id_siswa")
+                cookies.remove("auth")
+                setTimeout(() => navigate('/'), 1000)
+                
+              }
+              
+            }
+        );
+    }
   return (
     <>
         <Header/>
@@ -74,7 +107,7 @@ function Userinfo() {
             </div>
         </div>
         <div className='d-flex justify-content-center px-4 mt-3'>
-            <button className='logout'>Keluar</button>
+            <button className='logout' onClick={handleLogout}>Keluar</button>
         </div>
 
         <Navigation/>

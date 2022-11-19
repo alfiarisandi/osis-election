@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-input[type=text]{
+input[type=number]{
     height: 50px;
     border: none;
     border-radius: 15px;
