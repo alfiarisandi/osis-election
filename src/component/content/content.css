@@ -170,7 +170,7 @@
 
 .reporting{
     width: 93%;
-    height: 215px;
+    height: fit-content;
     margin-top: 10px;
     margin-bottom: 80px;
     margin-left: auto;

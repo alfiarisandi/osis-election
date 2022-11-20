@@ -1,17 +1,23 @@
-import { useLazyQuery } from '@apollo/client'
+import { useLazyQuery, useSubscription } from '@apollo/client'
 import React from 'react'
 import { useEffect } from 'react'
 import Content from '../../component/content/content'
 import Header from '../../component/header/header'
 import Navigation from '../../component/navigation/navigation'
-import { GETKANDIDATHOME, GETNAMASEKOLAH, GETTAHUNAJAR, GETUSERNAMA } from '../../libs/client/gql'
+import { GETEVENTSEKOLAH, GETKANDIDATHOME, GETNAMASEKOLAH, GETREPORTBELUMMEMILIH, GETREPORTSUDAHMEMEILIH, GETUSERNAMA } from '../../libs/client/gql'
 
 
 export default function Home() {
   const [getNamaUser, { data : dataNamaUSer , loading : loadDataNamaUser }] = useLazyQuery(GETUSERNAMA)
   const [getNamaSekolah, {data : NamaSekolah}] = useLazyQuery(GETNAMASEKOLAH)
-  const [getTahunAjar, {data : dataTahunAjar, loading : loadDataTahunAjar}] = useLazyQuery(GETTAHUNAJAR)
+  const {data : dataEventSekolah, loading : LoadEventSekolah} = useSubscription(GETEVENTSEKOLAH, {
+    variables : {
+      id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+    }
+  })
   const [getKandidatHome, {data : dataKandidat}] = useLazyQuery(GETKANDIDATHOME)
+  const {data : dataReportBelum} = useSubscription(GETREPORTBELUMMEMILIH)
+  const {data : dataReportSudah} = useSubscription(GETREPORTSUDAHMEMEILIH)
 
 
   useEffect(() => {
@@ -25,30 +31,26 @@ export default function Home() {
         id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
       }
     })
-    getTahunAjar({
-      variables : {
-        id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
-      }
-    })
     getKandidatHome({
       variables : {
         id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
       }
     })
     
-  }, [getNamaUser, getTahunAjar, getNamaSekolah, getKandidatHome])
+  }, [getNamaUser, getNamaSekolah, getKandidatHome])
 
-  
   return (
     <div className='container'>
         <Header dataNamaUser = {dataNamaUSer} loadDataNamaUser = {loadDataNamaUser}/>
         <Content 
           namaSekolah = {NamaSekolah?.sekolah[0].nama_sekolah}
-          tahunAjar ={dataTahunAjar?.event[0].tahun_ajaran} 
-          loadTahunAJar = {loadDataTahunAjar}
+          eventSekolah ={dataEventSekolah?.event[0]} 
+          loadTahunAJar = {LoadEventSekolah}
           kandidatHome = {dataKandidat}
+          dataSudahMemilih = {dataReportSudah?.siswa_aggregate.aggregate.count}
+          dataBelumMemilih = {dataReportBelum?.siswa_aggregate.aggregate.count}
           />
-        <Navigation/>
+        <Navigation eventSekolah ={dataEventSekolah?.event[0]}/>
     </div>
   )
 }

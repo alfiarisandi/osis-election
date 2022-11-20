@@ -26,9 +26,12 @@ export const GETNAMASEKOLAH = gql`
   }
   }
 `
-export const GETTAHUNAJAR = gql`
-  query MyQuery($id_sekolah: Int) {
+export const GETEVENTSEKOLAH = gql`
+  subscription MySubscription($id_sekolah: Int) {
     event(where: {id_sekolah: {_eq: $id_sekolah}}) {
+      tanggal_mulai
+      tanggal_selesai
+      tanggal_pengumuman
       tahun_ajaran
     }
   }
@@ -44,4 +47,30 @@ query MyQuery($id_sekolah: Int) {
     pasangan_urut
   }
 }
+`
+
+export const GETREPORTBELUMMEMILIH = gql`
+  subscription MySubscription {
+  siswa_aggregate(where: {status_memilih: {_eq: false}}) {
+    aggregate {
+      count(columns: status_memilih)
+    }
+  }
+}
+`
+
+export const GETREPORTSUDAHMEMEILIH = gql`
+  subscription MySubscription {
+  siswa_aggregate(where: {status_memilih: {_eq: true}}) {
+    aggregate {
+      count(columns: status_memilih)
+    }
+  }
+}
+
+`
+
+// User Info Page 
+export const GETDATASISWA = gql `
+  
 `

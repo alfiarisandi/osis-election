@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react';
 import './navigation.css'
 import { useLocation, useNavigate } from 'react-router-dom';
 
-function Navigation() {
+function Navigation(props) {
+    const getCurrentDate = () => {
+        let newDate = new Date()
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+        const separator = '-'
+
+        return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
+    }
+
     const location = useLocation();
     const navigate = useNavigate();
+    const [statusReporting, setStatusReporting] = useState("")
 
     const handleHome = () => {
         navigate('/home')
@@ -19,6 +30,19 @@ function Navigation() {
     const handlePagePilihCalon = () => {
         navigate('/pilih-calon')
     }
+
+    useEffect(() => {
+        if(props.eventSekolah?.tanggal_mulai > getCurrentDate()){
+            setStatusReporting('Not Report')
+        }
+        else if(props.eventSekolah?.tanggal_mulai < getCurrentDate() &&  props.eventSekolah?.tanggal_selesai > getCurrentDate()){
+            setStatusReporting('On Report')
+        }
+        else if(props.eventSekolah?.tanggal_selesai < getCurrentDate()){
+            setStatusReporting('On Finish')
+        }
+    },[props, setStatusReporting])
+
   return (
     <div className='navigation'>
         <div className='navigation-bar'>
@@ -58,7 +82,27 @@ function Navigation() {
             </div>
         </div>
         <div className='button-election'>
-        <Icon icon="fluent:vote-20-regular" width="50" color='white' onClick={() => handlePagePilihCalon()}/>
+            {
+                statusReporting === 'On Report' && (
+                    <>
+                        <Icon icon="fluent:vote-20-regular" width="50" color='white' onClick={() => handlePagePilihCalon()}/>
+                    </>
+                )
+            }
+            {
+                statusReporting === 'On Finish' && (
+                    <>
+                        <Icon icon="material-symbols:bar-chart-rounded" width="50" color='white' onClick={() => handlePagePilihCalon()}/>
+                    </>
+                )
+            }
+            {
+                statusReporting === 'Not Report' && (
+                    <>
+                        
+                    </>
+                )
+            }
         </div>
     </div>
   )
