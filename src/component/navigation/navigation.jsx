@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react';
 import './navigation.css'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { GETEVENTSEKOLAH } from '../../libs/client/gql';
+import { useSubscription } from '@apollo/client';
 
 function Navigation(props) {
     const getCurrentDate = () => {
@@ -18,6 +20,12 @@ function Navigation(props) {
     const navigate = useNavigate();
     const [statusReporting, setStatusReporting] = useState("")
 
+    const {data : dataEventSekolah} = useSubscription(GETEVENTSEKOLAH, {
+        variables : {
+          id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+        }
+      })
+
     const handleHome = () => {
         navigate('/home')
     }
@@ -32,16 +40,16 @@ function Navigation(props) {
     }
 
     useEffect(() => {
-        if(props.eventSekolah?.tanggal_mulai > getCurrentDate()){
+        if(dataEventSekolah?.event[0].tanggal_mulai > getCurrentDate()){
             setStatusReporting('Not Report')
         }
-        else if(props.eventSekolah?.tanggal_mulai < getCurrentDate() &&  props.eventSekolah?.tanggal_selesai > getCurrentDate()){
+        else if(dataEventSekolah?.event[0].tanggal_mulai < getCurrentDate() &&  dataEventSekolah?.event[0].tanggal_selesai > getCurrentDate()){
             setStatusReporting('On Report')
         }
-        else if(props.eventSekolah?.tanggal_selesai < getCurrentDate()){
+        else if(dataEventSekolah?.event[0].tanggal_selesai < getCurrentDate()){
             setStatusReporting('On Finish')
         }
-    },[props, setStatusReporting])
+    },[dataEventSekolah, setStatusReporting])
 
   return (
     <div className='navigation'>

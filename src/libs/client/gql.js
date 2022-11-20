@@ -72,5 +72,13 @@ export const GETREPORTSUDAHMEMEILIH = gql`
 
 // User Info Page 
 export const GETDATASISWA = gql `
-  
+subscription MyQuery($id_siswa: Int!) {
+  siswa_by_pk(id_siswa: $id_siswa) {
+    alamat_siswa
+    kelas
+    nama
+    nis
+    status_memilih
+  }
+}
 `

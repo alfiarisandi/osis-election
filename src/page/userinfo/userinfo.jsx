@@ -1,3 +1,4 @@
+import {  useSubscription } from '@apollo/client'
 import { Icon } from '@iconify/react'
 import React from 'react'
 import  Table  from 'react-bootstrap/Table'
@@ -5,14 +6,22 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie'
 import Header from '../../component/header/header'
-import Navigation from '../../component/navigation/navigation'
+import { GETDATASISWA } from '../../libs/client/gql'
 import "./userinfo.css"
 
 
 function Userinfo() {
-    const statusmemilih = false;
+    
     const navigate = useNavigate();
     const cookies = new Cookies()
+
+    const {data : dataSiswa} = useSubscription(GETDATASISWA, {
+        variables : {
+            id_siswa : parseInt(localStorage.getItem('id_siswa'))
+        }
+    })
+
+    const statusmemilih = dataSiswa?.siswa_by_pk.status_memilih;
 
     const handleLogout = () => {
         Swal.fire({
@@ -41,6 +50,7 @@ function Userinfo() {
             }
         );
     }
+
   return (
     <>
         <Header/>
@@ -89,19 +99,19 @@ function Userinfo() {
                     <tbody>
                         <tr>
                             <td className='fw-bold'>Nama</td>
-                            <td align='right'>Alfi Arisandi</td>
+                            <td align='right'>{dataSiswa?.siswa_by_pk.nama}</td>
                         </tr>
                         <tr>
                             <td className='fw-bold'>NIS</td>
-                            <td align='right'>19102001</td>
+                            <td align='right'>{dataSiswa?.siswa_by_pk.nis}</td>
                         </tr>
                         <tr>
                             <td className='fw-bold'>Kelas</td>
-                            <td align='right'>XII IPA 2</td>
+                            <td align='right'>{dataSiswa?.siswa_by_pk.kelas}</td>
                         </tr>
                         <tr>
                             <td className='fw-bold'>Alamat</td>
-                            <td align='right'>Kedungmalang Rt01/01 Lorem saepe est dolore velit nobis culpa doloribus.</td>
+                            <td align='right'>{dataSiswa?.siswa_by_pk.alamat_siswa}</td>
                         </tr>
                     </tbody>
                 </Table>
@@ -111,7 +121,7 @@ function Userinfo() {
             <button className='logout' onClick={handleLogout}>Keluar</button>
         </div>
 
-        <Navigation/>
+        
     </>
   )
 }
