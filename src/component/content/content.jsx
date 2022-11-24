@@ -64,7 +64,7 @@ function Content(props) {
         <div className='scroll-overflow'>
 
             <div className='kandidat'>
-                <Infokandidat kandidatHome = {props.kandidatHome?.kandidat} />
+                <Infokandidat kandidatHome = {props.kandidatHome?.kandidat} fotoKandidat = {props.fotoKandidat}/>
             </div>
         </div>
         <div className='reporting'>

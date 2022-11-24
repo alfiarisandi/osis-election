@@ -82,3 +82,19 @@ subscription MyQuery($id_siswa: Int!) {
   }
 }
 `
+
+//Detai Calon Kandidat 
+export const GETDETAILKANDIDAT = gql `
+query MyQuery( $id_kandidat: Int! ) {
+  kandidat_by_pk(id_kandidat: $id_kandidat) {
+    pasangan_urut
+    nama_wakil
+    nama_ketua
+    kelas
+    foto
+    visi
+    misi
+  }
+}
+
+`

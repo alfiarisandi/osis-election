@@ -1,7 +1,9 @@
 import { useLazyQuery, useSubscription } from '@apollo/client'
-import React from 'react'
+import { getDownloadURL, listAll, ref } from 'firebase/storage'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import Content from '../../component/content/content'
+import { storage } from '../../component/firebase'
 import Header from '../../component/header/header'
 import Navigation from '../../component/navigation/navigation'
 import { GETEVENTSEKOLAH, GETKANDIDATHOME, GETNAMASEKOLAH, GETREPORTBELUMMEMILIH, GETREPORTSUDAHMEMEILIH, GETUSERNAMA } from '../../libs/client/gql'
@@ -39,6 +41,27 @@ export default function Home() {
     
   }, [getNamaUser, getNamaSekolah, getKandidatHome])
 
+
+
+
+  const imagesListRef = ref(storage, "images/");
+  const [imageUrls, setImageUrls] = useState([]);
+
+
+  // useEffect(() => {
+  //   listAll(imagesListRef).then((response) => {
+  //     response.items.forEach((item) => {
+  //       getDownloadURL(item).then((url) => {
+  //         setImageUrls((prev) => [...prev, url]);
+  //       });
+  //     });
+  //   });
+  // }, []);
+
+
+
+
+
   return (
     <div className='container'>
         <Header dataNamaUser = {dataNamaUSer} loadDataNamaUser = {loadDataNamaUser}/>
@@ -49,6 +72,7 @@ export default function Home() {
           kandidatHome = {dataKandidat}
           dataSudahMemilih = {dataReportSudah?.siswa_aggregate.aggregate.count}
           dataBelumMemilih = {dataReportBelum?.siswa_aggregate.aggregate.count}
+          fotoKandidat = {imageUrls}
           />
         <Navigation eventSekolah ={dataEventSekolah?.event[0]}/>
     </div>

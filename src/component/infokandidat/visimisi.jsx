@@ -1,15 +1,38 @@
 import React from 'react'
 import "./infokandidat.css"
+import  Table  from 'react-bootstrap/Table'
 
-function Visimisi() {
+function Visimisi(props) {
   return (
     <>
     <div className='visi-misi'> 
+      <div className='biodata'>
+            <div className='isi-biodata'>
+            <Table borderless className='w-100'>
+                    <tbody>
+                        <tr>
+                            <td className='fw-bold'>Calon Ketua</td>
+                            <td align='right'>{props.biodataKandidat?.nama_ketua}</td>
+                        </tr>
+                        <tr>
+                        <td className='fw-bold'>Calon Wakil Ketua</td>
+                            <td align='right'>{props.biodataKandidat?.nama_wakil}</td>
+                        </tr>
+                        <tr>
+                            <td className='fw-bold'>Kelas</td>
+                            <td align='right'>{props.biodataKandidat?.kelas}</td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </div>
+            <div className='header-biodata'>
+                <span className='text-black fw-bold'>Biodata</span>
+            </div>
+        </div>
         <div className='visi'>
             <div className='isi-visi'>
                 <p>
-                  Menjadi wadah bagi siswa untuk mengembangkan segala potensi yang ada sehingga terbentuk siswa yang cerdas, kreatif, dinamis, berprestasi, dan berakhlak mulia. Kemudian, diharapkan bisa menjaga nama baik sekolah menuju sekolah yang unggul di tingkat nasional. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum nemo impedit sapiente. Ut harum omnis doloremque, fugiat ratione dolorem totam minus incidunt dolore nisi inventore magnam optio ab velit reiciendis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, esse ad tenetur culpa voluptatibus illo, vitae quisquam laboriosam expedita id ipsum, dolorum qui repudiandae consectetur omnis molestias. Porro, perspiciatis quo.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quidem eos ab laboriosam sit necessitatibus voluptatum. Placeat magni voluptatum, id modi quae expedita impedit accusamus ipsam suscipit praesentium, inventore aliquam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, culpa suscipit officia impedit reprehenderit tempore architecto saepe dolorum, aliquid doloribus quos vel, in quaerat dolore animi veniam neque nihil at?
+                  {props.biodataKandidat?.visi}
                 </p>
             </div>
             <div className='header-visi'>
@@ -19,8 +42,7 @@ function Visimisi() {
         <div className='misi'>
             <div className='isi-misi'>
                 <p>
-                  Menjadi wadah bagi siswa untuk mengembangkan segala potensi yang ada sehingga terbentuk siswa yang cerdas, kreatif, dinamis, berprestasi, dan berakhlak mulia. Kemudian, diharapkan bisa menjaga nama baik sekolah menuju sekolah yang unggul di tingkat nasional. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum nemo impedit sapiente. Ut harum omnis doloremque, fugiat ratione dolorem totam minus incidunt dolore nisi inventore magnam optio ab velit reiciendis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, esse ad tenetur culpa voluptatibus illo, vitae quisquam laboriosam expedita id ipsum, dolorum qui repudiandae consectetur omnis molestias. Porro, perspiciatis quo.
-                
+                  {props.biodataKandidat?.misi}              
                 </p>
             </div>
             <div className='header-misi'>

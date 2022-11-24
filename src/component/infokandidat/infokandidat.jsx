@@ -1,12 +1,12 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 function Infokandidat(props) {
     const location = useLocation();
     const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate('/detailcalon')
+    let { id_kandidat_param } = useParams();
+    const handleClick = (id_kandidat) => {
+        navigate('/detailcalon/' + id_kandidat)
     }
 
   return (
@@ -16,10 +16,9 @@ function Infokandidat(props) {
             <>
             {
                 props.kandidatHome?.map(i => (
-                    <div className='info-kandidat' onClick={() => handleClick()} key={i.pasangan_urut}>
+                    <div className='info-kandidat' onClick={() => handleClick(i.id_kandidat)} key={i.pasangan_urut}>
                         <div className='foto-kandidat'>
-                            
-                            <img src={require('../../img/kandidat-1.png')} alt="" />
+                            <img src={i.foto} alt="" />
                             
                             <div className='overlay-foto'>
                                 <div className='nomor-urut'>
@@ -66,19 +65,20 @@ function Infokandidat(props) {
         )
      }
      {
-        location.pathname === '/detailcalon' && (
+        location.pathname === '/detailcalon/'+id_kandidat_param && (
             <>
-                <div className='info-kandidat' onClick={() => handleClick()}>
+                <div className='info-kandidat'>
                     <div className='foto-kandidat'>
                         
-                        <img src={require('../../img/foto-calon.jpg')} alt="" />
+                        <img src={props.detailkandidatFoto} alt="" />
                         
                         <div className='overlay-foto'>
                             <div className='nomor-urut'>
-                                <span className='fw-bolder fs-2 text-white text-center'>1</span>
+                                <span className='fw-bolder fs-2 text-white text-center'>{props.detailPasanganUrut}</span>
                             </div>
                             <div className='nama-calon'>
-                                <span>ALFI & ARISANDI</span>
+                                    <span>{props.detailkandidatNamaKetua}</span>
+                                    <span>& {props.detailkandidatNamaWakil}</span>
                             </div>
                         </div>
 

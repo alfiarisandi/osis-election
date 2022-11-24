@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route element={<PrivateRouteMobile/>}>
             <Route path='/home' exact element={<><Home/><Navigation/></>}/>
-            <Route path='/detailcalon' exact element={<><Detailcalon/></>}/>
+            <Route path='/detailcalon/:id_kandidat_param' exact element={<><Detailcalon/></>}/>
             <Route path='/informasi' exact element={<><Informasi/><Navigation/></>}/>
             <Route path='/user-info' exact element={<><Userinfo/><Navigation/></>}/>
             <Route path='/pilih-calon' exact element={<><Pilihcalon/></>}/>

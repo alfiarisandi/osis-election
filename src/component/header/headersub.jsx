@@ -3,13 +3,14 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import './header.css'
 
-export default function Headersub(){
+export default function Headersub( props ){
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleBack = () => {
         navigate('/home');
     }
+
     return(
         <div className='d-flex flex-row justify-content-between align-items-center mt-4 mb-4'>
         <div className='bg-header'>
@@ -24,12 +25,12 @@ export default function Headersub(){
                 <div className='header-sub'>
                     <div className='rounded-right'>
                         <div className='user-info'>
-                            <span className='fw-bold text-white ms-4'>Alfi Arisandi</span>
-                            <span className='fw-light text-white ms-4'>Siswa</span>
+                            <span className='fw-bold text-white ms-4'>{props.namaUser}</span>
+                            <span className='fw-light text-white ms-4'>Siswa {props.kelasUser}</span>
                         </div>
                     </div>
                     <div className='circle'>
-                            <span className='text-white fw-bolder fs-1'>1</span>
+                            <span className='text-white fw-bolder fs-1'>{props.detailPasanganUrut}</span>
                     </div>
                 </div>
             </>
