@@ -45,17 +45,17 @@ function Infokandidat(props) {
      {
         location.pathname === '/pilih-calon' && (
             <>
-                <div className='info-kandidat-pemilihan' onClick={false}>
-                    <div className='foto-kandidat-pemilihan'>
+                <div className='info-kandidat-pemilihan'>
+                    <div className='foto-kandidat-pemilihan' >
                         
-                        <img src={require('../../img/foto-calon.jpg')} alt="" />
+                        <img src={props.kandidat.foto} alt="" />
                         
                         <div className='overlay-foto-pemilihan'>
                             <div className='nomor-urut-pemilihan'>
-                                <span className='fw-bolder fs-2 text-white text-center'>1</span>
+                                <span className='fw-bolder fs-2 text-white text-center'>{props.kandidat.pasangan_urut}</span>
                             </div>
-                            <div className='nama-calon-pemilihan'>
-                                <span>ALFI & ARISANDI</span>
+                            <div className='nama-calon-pemilihan' style={{paddingBottom: "15px"}}>
+                                <span>{props.kandidat.nama_ketua} & {props.kandidat.nama_wakil}</span>
                             </div>
                         </div>
 
