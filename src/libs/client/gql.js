@@ -129,3 +129,13 @@ query myquery($id_sekolah: Int!, $id_kandidat: Int!) {
   }
 }
 `
+
+export const GETVOTEPEMILIHANSUBSCRIPTION = gql`
+subscription myquery($id_sekolah: Int!, $id_kandidat: Int!) {
+  vote_aggregate(where: {id_sekolah: {_eq: $id_sekolah}, id_kandidat: {_eq: $id_kandidat}}) {
+    aggregate {
+      count(columns: id_kandidat)
+    }
+  }
+}
+`

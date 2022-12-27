@@ -9,11 +9,11 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { useLazyQuery, useQuery } from '@apollo/client';
-import { GETKANDIDATHOME, GETVOTEPEMILIHAN } from '../../libs/client/gql';
+import { useLazyQuery, useQuery, useSubscription } from '@apollo/client';
+import { GETKANDIDATHOME, GETVOTEPEMILIHAN, GETVOTEPEMILIHANSUBSCRIPTION } from '../../libs/client/gql';
 import { useEffect } from 'react';
-import { API } from 'aws-amplify';
-import { Children } from 'react';
+import { useState } from 'react';
+import { useCallback } from 'react';
 
 ChartJS.register(
   CategoryScale,
@@ -30,10 +30,12 @@ function Hasilpemilihan() {
             id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
         }
     })
+
+    const [getVotebyId] = useLazyQuery(GETVOTEPEMILIHAN);
     
-    const[getVotePemilihan, {data : dataVote}] = useLazyQuery(GETVOTEPEMILIHAN)
-    const votePemilihan = []
-    let loading = true
+    const getvote = []
+    const [generateVote, setGenerateVote] = useState({})
+    const [loading, setLoading] =useState (false)
 
     const options = {
         responsive: true,
@@ -48,14 +50,14 @@ function Hasilpemilihan() {
         },
       };
 
-      const labels = [];
+      const [labels, setLabels] = useState([]);
 
       const data = {
         labels,
         datasets: [
           {
             label: '',
-            data: [votePemilihan[0], votePemilihan[1], votePemilihan[3]],
+            data: [],
             backgroundColor: [
                 'rgba(240, 180, 21, 1)',
                 'rgba(208, 208, 208, 1)',
@@ -64,74 +66,89 @@ function Hasilpemilihan() {
         ],
       };
 
-      const handleVoteee = (i) => {
-        votePemilihan.push(parseInt(i))
-      }
+      // const handleVotePemilihanAxios = async(id_kandidat) => {
+      //   const endpoint = "https://osis-election.hasura.app/v1/graphql";
+      //   const headers = {
+      //     'x-hasura-admin-secret' :
+      //       '56YsV9sJqkqe4G6M8RbBpP1xivLLInP27Vmwbn10l8fuM17Cu4Mvx71MfBzsTC6n'
+      //   };
+      //   const graphqlQuery = {
+      //       "operationName": "getvote",
+      //       "query": `
+      //             query getvote($id_sekolah: Int!, $id_kandidat: Int!) {
+      //               vote_aggregate(where: {id_sekolah: {_eq: $id_sekolah}, id_kandidat: {_eq: $id_kandidat}}) {
+      //                 aggregate {
+      //                   count(columns: id_kandidat)
+      //                 }
+      //               }
+      //             }
+      //               `,
+      //       "variables": {
+      //           id_sekolah : parseInt(localStorage.getItem('id_sekolah')),
+      //           id_kandidat : id_kandidat
+      //       }
+      //   };
 
-      const handleVotePemilihan = () => {
-        // loading = true
-        // dataKandidat?.kandidat.forEach(items => {
-        //     getVotePemilihan({
-        //         variables:{
-        //             id_sekolah : parseInt(localStorage.getItem('id_sekolah')),
-        //             id_kandidat : items.id_kandidat
-        //         },
-        //         fetchPolicy : 'network-only'
-        //     }).then(result => result).then(data => console.log(data.data.vote_aggregate.aggregate.count.type))
-        //     labels.push(String(items.nama_ketua) + " & " + String(items.nama_wakil))
-        // });
+      //   const options = {
+      //       "method": "POST",
+      //       "headers": headers,  
+      //       "body": JSON.stringify(graphqlQuery)
+      //   };
 
-        // console.log(votePemilihan.length)
+      //   const response = await fetch(endpoint, options);
+      //   const data = await response.json();
 
-        // console.log(labels)
+      //   setVote({...getVote, [id_kandidat] : data.data.vote_aggregate.aggregate.count})
+      //   return data.data.vote_aggregate.aggregate.count
+      // }
 
-        // loading = false
-        console.log("kepanggil")
-        console.log(dataVote?.vote_aggregate.agregate)
-      }
+      // const handleGetVote = useCallback(() => {
+      //   dataKandidat?.kandidat.forEach(items => {
+      //     getVotebyId({
+      //       variables : {
+      //       id_sekolah : parseInt(localStorage.getItem('id_sekolah')),
+      //       id_kandidat : items.id_kandidat}
+      //     }).then(res => setVote({...getVote, [items.id_kandidat] : res.data.vote_aggregate.aggregate.count}))
+      //   });
+      // })
 
       useEffect(()=>  {
+
         dataKandidat?.kandidat.forEach(items => {
-            getVotePemilihan({
-                variables:{
-                    id_sekolah : parseInt(localStorage.getItem('id_sekolah')),
-                    id_kandidat : items.id_kandidat
-                },
-                fetchPolicy : 'network-only',
-                onCompleted : () => handleVotePemilihan()
-            })
-            labels.push(String(items.nama_ketua) + " & " + String(items.nama_wakil))
+          getVotebyId({
+            variables : {
+            id_sekolah : parseInt(localStorage.getItem('id_sekolah')),
+            id_kandidat : items.id_kandidat}
+          }).then(res => getvote.push(res.data.vote_aggregate.aggregate.count))
         });
-
-        console.log(votePemilihan.length)
-
-        console.log(labels)
         
-      },[])
+          
+      },[ dataKandidat, getVotebyId])
       
-    
   return (
     <>
-        {
-            loading ? (
-                <>
-                    <span>Loading</span>
-                </>
-            ): (
-                <>
+    {
+      loading ? (
+        <div className="spinner-border text-warning" role="status">
+          <span className="sr-only"></span>
+        </div>
+      ) : (
+        <>
 
-                {/* <Bar options={options} data={data} /> */}
-                {
-                    votePemilihan.map(i => {
-                        return(
-                            <span>i</span>
-                        )
-                    })
-                }
-                </>
-            )
+        <Bar options={options} data={data} />
+
+        {
+          console.log(getvote)
+          // getVote.map(i => {
+          //   return(
+          //     <span>{i}</span>
+          //   )
+          // })
         }
-        
+        </>
+      )
+    }
+
     </>
   )
 }
