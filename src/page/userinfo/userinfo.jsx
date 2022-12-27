@@ -38,7 +38,9 @@ function Userinfo() {
                 Swal.fire({
                     showConfirmButton :false,
                     icon : "success",
-                    timer: 1000
+                    timer: 1000,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
                 })
                 localStorage.removeItem("id_siswa")
                 localStorage.removeItem("id_sekolah")

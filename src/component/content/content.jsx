@@ -39,8 +39,8 @@ function Content(props) {
 
     const [statusReporting, setStatusReporting] = useState("")
 
-    const belumMemilihPersen = parseFloat(props.dataBelumMemilih / (props.dataBelumMemilih+props.dataSudahMemilih)) * 100
-    const sudahMemilihPersen = parseFloat(props.dataSudahMemilih / (props.dataBelumMemilih+props.dataSudahMemilih)) * 100
+    const belumMemilihPersen = parseFloat((props.dataBelumMemilih / (props.dataBelumMemilih+props.dataSudahMemilih)) * 100).toFixed(1)
+    const sudahMemilihPersen = parseFloat((props.dataSudahMemilih / (props.dataBelumMemilih+props.dataSudahMemilih)) * 100).toFixed(1)
 
     useEffect(() => {
         if(props.eventSekolah?.tanggal_mulai > getCurrentDate()){

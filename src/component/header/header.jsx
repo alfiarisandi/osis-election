@@ -13,7 +13,40 @@ function Header(props) {
             <img src={require("../../img/bg-header.png")} alt=""  />
         </div>
         {
-            location.pathname !== '/user-info' && 
+            location.pathname === '/hasil-pemilihan' && 
+            <>
+            
+            </>
+        }
+        {
+            location.pathname === '/home' && 
+            <>
+                <div className='header-home'>
+                    <div className='rounded-right-home'>
+                        <div className='user-info'>
+                            {
+                                props.loadDataNamaUser? (
+                                    <>
+                                        <Skeleton width="80%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                        <Skeleton width="80%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className='fw-bold text-white'>{props.dataNamaUser?.siswa[0].nama}</span>
+                                        <span className='fw-light text-white'>Siswa {props.dataNamaUser?.siswa[0].kelas}</span>
+                                    </>
+                                )
+                            }
+                        </div>
+                    </div>
+                    <div className='circle-home'>
+                            <Icon icon="mdi:user-circle-outline" color='#003566' width="60"/>
+                    </div>
+                </div>
+            </>
+        }
+        {
+            location.pathname === '/informasi' && 
             <>
                 <div className='header-home'>
                     <div className='rounded-right-home'>

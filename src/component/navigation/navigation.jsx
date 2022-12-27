@@ -38,6 +38,10 @@ function Navigation(props) {
     const handlePagePilihCalon = () => {
         navigate('/pilih-calon')
     }
+    const handlePageHasilPemilihan = () => {
+        navigate('/hasil-pemilihan')
+        window.location.reload(false)
+    }
 
     useEffect(() => {
         if(dataEventSekolah?.event[0].tanggal_mulai > getCurrentDate()){
@@ -83,6 +87,15 @@ function Navigation(props) {
                                 </>
                             )
                         }
+                        {
+                            location.pathname === '/hasil-pemilihan' && (
+                                <>
+                                    <Icon icon="ant-design:home" width='35' color='#003566' onClick={() => handleHome()}/>
+                                    <Icon icon="bi:exclamation-circle" width='35' color='#003566' onClick={() => handleInfo()}/>
+                                    <Icon icon="fluent:people-list-16-regular" width='40' color='#003566' onClick={() => handleUserinfo()}/>
+                                </>
+                            )
+                        }
                         
                     </div>
                 </div>
@@ -100,14 +113,14 @@ function Navigation(props) {
             {
                 statusReporting === 'On Finish' && (
                     <>
-                        <Icon icon="material-symbols:bar-chart-rounded" width="50" color='white' onClick={() => handlePagePilihCalon()}/>
+                        <Icon icon="material-symbols:bar-chart-rounded" width="50" color='white' onClick={() => handlePageHasilPemilihan()}/>
                     </>
                 )
             }
             {
                 statusReporting === 'Not Report' && (
                     <>
-                        
+                        <Icon icon="fluent:vote-20-regular" width="50" color='white' onClick={() => handlePagePilihCalon()}/>
                     </>
                 )
             }

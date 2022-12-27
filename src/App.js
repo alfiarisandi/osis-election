@@ -20,7 +20,7 @@ function App() {
             <Route path='/informasi' exact element={<><Informasi/><Navigation/></>}/>
             <Route path='/user-info' exact element={<><Userinfo/><Navigation/></>}/>
             <Route path='/pilih-calon' exact element={<><Pilihcalon/></>}/>
-            <Route path='/hasil-pemilihan' exact element={<><Hasilpemilihan/></>}/>
+            <Route path='/hasil-pemilihan' exact element={<><Hasilpemilihan/><Navigation/></>}/>
         </Route>
 
         <Route path='/' exact element={<><Login/></>}/>

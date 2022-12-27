@@ -87,6 +87,25 @@ function Infokandidat(props) {
             </>
         )
      } 
+     {
+        location.pathname === '/hasil-pemilihan' && (
+            <>
+                <div className='info-kandidat-hasil'>
+                    <div className='foto-kandidat-hasil'>
+                        
+                        <img src={props.fotoKandidat} alt="" />
+                        
+                        <div className='overlay-foto-hasil'>
+                            <div className='nomor-urut'>
+                                <span className='fw-bolder fs-2 text-white text-center'>{props.pasangan_urut}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </>
+        )
+     } 
     </>
     
   )

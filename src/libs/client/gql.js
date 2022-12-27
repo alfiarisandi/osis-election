@@ -58,6 +58,26 @@ export const GETREPORTBELUMMEMILIH = gql`
   }
 }
 `
+export const GETREPORTBELUMMEMILIHQUERY = gql`
+  query MySubscription {
+  siswa_aggregate(where: {status_memilih: {_eq: false}}) {
+    aggregate {
+      count(columns: status_memilih)
+    }
+  }
+}
+`
+
+export const COUNTALLSISWA = gql`
+query MyQuery($id_sekolah: Int!) {
+  siswa_aggregate(where: {id_sekolah: {_eq: $id_sekolah}}) {
+    aggregate {
+      count(columns: id_siswa)
+    }
+  }
+}
+
+`
 
 export const GETREPORTSUDAHMEMEILIH = gql`
   subscription MySubscription {
