@@ -1,4 +1,4 @@
-import { useQuery, useSubscription } from '@apollo/client';
+import { useMutation, useQuery, useSubscription } from '@apollo/client';
 import { Icon } from '@iconify/react';
 import React from 'react'
 import { useEffect } from 'react';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Headersub from '../../component/header/headersub'
 import Infokandidat from '../../component/infokandidat/infokandidat'
-import { GETDATASISWA, GETEVENTSEKOLAH, GETKANDIDATHOME } from '../../libs/client/gql';
+import { GETDATASISWA, GETEVENTSEKOLAH, GETKANDIDATHOME, UPDATESISWAMEMILIH, VOTEKANDIDAT } from '../../libs/client/gql';
 import './pilihcalon.css'
 
 function Pilihcalon() {
@@ -40,11 +40,28 @@ function Pilihcalon() {
         }
       })
 
-    const handlePilihKandidat = () => {
+    const [updateSiswaMemilih] = useMutation(UPDATESISWAMEMILIH)
+    const [voteKandidat] = useMutation(VOTEKANDIDAT)
 
+    const handlePilihKandidat = (id_kandidat) => {
+        updateSiswaMemilih({
+            variables : {
+                id_siswa : parseInt(localStorage.getItem('id_siswa')),
+                waktu_memilih : getCurrentDate()
+            }
+        })
+        voteKandidat({
+            variables : {
+                object : {
+                    id_sekolah : parseInt(localStorage.getItem('id_sekolah')),
+                    id_siswa : parseInt(localStorage.getItem('id_siswa')),
+                    id_kandidat : id_kandidat
+                }
+            }
+        })
     }
 
-    const handlePilihCalon = (namaKetua, namaWakil) => {
+    const handlePilihCalon = (namaKetua, namaWakil, id_kandidat) => {
         Swal.fire({
             text: 'Anda yakin untuk memilih pasangan tersebut',
             title: namaKetua +' & ' + namaWakil,
@@ -61,8 +78,11 @@ function Pilihcalon() {
                     showConfirmButton :false,
                     icon : "success",
                     timer: 1300,
-                    title : 'Terimakasih anda sudah memilih'
+                    title : 'Terimakasih anda sudah memilih',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
                 })
+                handlePilihKandidat(id_kandidat)
                 setTimeout(() => navigate('/user-info'), 1300)
                 
               }
@@ -79,6 +99,8 @@ function Pilihcalon() {
                 confirmButtonColor: '#003566',
                 confirmButtonText: 'Ya',
                 reverseButtons: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false
             }).then((result) =>
             {
                 if (result.isConfirmed) {
@@ -96,6 +118,8 @@ function Pilihcalon() {
                 confirmButtonColor: '#003566',
                 confirmButtonText: 'Ya',
                 reverseButtons: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false
             }).then((result) =>
             {
                 if (result.isConfirmed) {
@@ -113,6 +137,8 @@ function Pilihcalon() {
                 confirmButtonColor: '#003566',
                 confirmButtonText: 'Ya',
                 reverseButtons: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false
             }).then((result) =>
             {
                 if (result.isConfirmed) {
@@ -135,7 +161,7 @@ function Pilihcalon() {
                         <div className='d-flex flex-column justify-content-center' key={i}>
                             <Infokandidat kandidat = {items}/>
                             <div className='position-relative mt-3'>
-                                <button className='tombol-pilih' onClick={() => handlePilihCalon(items.nama_ketua, items.nama_wakil)}>
+                                <button className='tombol-pilih' onClick={() => handlePilihCalon(items.nama_ketua, items.nama_wakil, items.id_kandidat)}>
                                     <span className='fw-semibold me-3'>Pilih</span>
                                     <Icon icon="fluent:vote-20-regular" width="30"/>
                                 </button>

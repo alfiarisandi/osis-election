@@ -44,13 +44,22 @@ function Login() {
         const cookies = new Cookies()
 
         if (loading === true){
-            Swal.showLoading()
+            Swal.fire({
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                }
+            })
+            
         }
         if(data?.siswa.length === 1){
             Swal.fire({
                 showConfirmButton :false,
                 icon : "success",
                 timer: 1300,
+                allowOutsideClick: false,
+                allowEscapeKey: false
             })
             cookies.set("auth", true, {path: "/"})
             localStorage.setItem('id_siswa', data.siswa[0].id_siswa)

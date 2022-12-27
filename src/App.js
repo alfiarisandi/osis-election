@@ -8,6 +8,7 @@ import Userinfo from './page/userinfo/userinfo';
 import Pilihcalon from './page/pilihcalon/pilihcalon';
 import PrivateRouteMobile from './component/privateroute/privateroutemobile';
 import Navigation from './component/navigation/navigation';
+import Hasilpemilihan from './page/hasilpemilihan/hasilpemilihan';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/informasi' exact element={<><Informasi/><Navigation/></>}/>
             <Route path='/user-info' exact element={<><Userinfo/><Navigation/></>}/>
             <Route path='/pilih-calon' exact element={<><Pilihcalon/></>}/>
+            <Route path='/hasil-pemilihan' exact element={<><Hasilpemilihan/></>}/>
         </Route>
 
         <Route path='/' exact element={<><Login/></>}/>

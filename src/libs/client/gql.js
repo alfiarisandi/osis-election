@@ -98,3 +98,34 @@ query MyQuery( $id_kandidat: Int! ) {
 }
 
 `
+
+//pilih kandidat 
+export const UPDATESISWAMEMILIH = gql`
+mutation MyMutation($id_siswa: Int!, $waktu_memilih: date) {
+  update_siswa_by_pk(pk_columns: {id_siswa: $id_siswa}, _set: {status_memilih: true, waktu_memilih: $waktu_memilih}) {
+    status_memilih
+    waktu_memilih
+  }
+}
+`
+
+export const VOTEKANDIDAT = gql `
+mutation MyMutation($object: vote_insert_input = {}) {
+  insert_vote_one(object: $object) {
+    id_siswa
+    id_sekolah
+    id_kandidat
+    id_voting
+  }
+}
+`
+
+export const GETVOTEPEMILIHAN = gql`
+query myquery($id_sekolah: Int!, $id_kandidat: Int!) {
+  vote_aggregate(where: {id_sekolah: {_eq: $id_sekolah}, id_kandidat: {_eq: $id_kandidat}}) {
+    aggregate {
+      count(columns: id_kandidat)
+    }
+  }
+}
+`
