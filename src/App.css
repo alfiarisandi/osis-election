@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.mobile-page{
+  display: none;
+}
+
+.desktop-page{
+  display: block;
+}
+
+@media screen and (max-width: 500px) {
+  .mobile-page {
+    display: block;
+  }
+  .desktop-page{
+    display: none;
+  }
+}

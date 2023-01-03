@@ -1,0 +1,44 @@
+.bg-container{
+    justify-content: space-between;
+}
+.bg-error{
+    height: 100vh;
+    width: 100%;
+}
+
+.button-reporting{
+    text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    background: #003566;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: white;
+    transition: all 0.5s 0s ease;
+}
+
+.text-errors{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 5em;
+}
+
+.button-reporting:hover{
+    color: white;
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 994px) {
+    .bg-container{
+        justify-content: center !important;
+    }
+    .bg-errors{
+        display: none;
+    }
+    .text-errors{
+        align-items: center !important;
+        transform: scale(1) !important;
+        justify-content: center !important;
+        margin: 0px !important;
+    }
+}

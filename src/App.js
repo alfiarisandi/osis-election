@@ -9,23 +9,31 @@ import Pilihcalon from './page/pilihcalon/pilihcalon';
 import PrivateRouteMobile from './component/privateroute/privateroutemobile';
 import Navigation from './component/navigation/navigation';
 import Hasilpemilihan from './page/hasilpemilihan/hasilpemilihan';
+import Accessrestricted from './page/errors/accessrestricter';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<PrivateRouteMobile/>}>
-            <Route path='/home' exact element={<><Home/><Navigation/></>}/>
-            <Route path='/detailcalon/:id_kandidat_param' exact element={<><Detailcalon/></>}/>
-            <Route path='/informasi' exact element={<><Informasi/><Navigation/></>}/>
-            <Route path='/user-info' exact element={<><Userinfo/><Navigation/></>}/>
-            <Route path='/pilih-calon' exact element={<><Pilihcalon/></>}/>
-            <Route path='/hasil-pemilihan' exact element={<><Hasilpemilihan/><Navigation/></>}/>
-        </Route>
 
-        <Route path='/' exact element={<><Login/></>}/>
-      </Routes>
+  return (
+    <>
+    <BrowserRouter>
+        <div className='mobile-page'>
+          <Routes>
+            <Route element={<PrivateRouteMobile/>}>
+                <Route path='/home' exact element={<><Home/><Navigation/></>}/>
+                <Route path='/detailcalon/:id_kandidat_param' exact element={<><Detailcalon/></>}/>
+                <Route path='/informasi' exact element={<><Informasi/><Navigation/></>}/>
+                <Route path='/user-info' exact element={<><Userinfo/><Navigation/></>}/>
+                <Route path='/pilih-calon' exact element={<><Pilihcalon/></>}/>
+                <Route path='/hasil-pemilihan' exact element={<><Hasilpemilihan/><Navigation/></>}/>
+            </Route>
+            <Route path='/' exact element={<><Login/></>}/>
+          </Routes>
+        </div>
+        <div className='desktop-page'>
+          <Accessrestricted/>
+        </div>
     </BrowserRouter>
+    </>
   );
 }
 
