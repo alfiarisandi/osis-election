@@ -72,7 +72,6 @@ function Header(props) {
                 </div>
             </>
         }
-        
      </div>
   )
 }

@@ -5,7 +5,6 @@ import  Table  from 'react-bootstrap/Table'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie'
-import Header from '../../component/header/header'
 import { GETDATASISWA } from '../../libs/client/gql'
 import "./userinfo.css"
 
@@ -55,7 +54,6 @@ function Userinfo() {
 
   return (
     <>
-        <Header/>
         {
             statusmemilih ? (
                 <>
