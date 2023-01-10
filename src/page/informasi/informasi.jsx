@@ -10,7 +10,6 @@ function Informasi() {
       id_siswa : parseInt(localStorage.getItem('id_siswa'))
     }
   })
-  console.log(dataNamaUSer)
   return (
     <>
     <div className='container'>

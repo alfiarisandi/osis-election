@@ -28,7 +28,7 @@ function Pilihcalon() {
         }
     })
 
-    const {data : dataSiswa} = useSubscription(GETDATASISWA, {
+    const {data : dataSiswa, loading : loadDataSiswa} = useSubscription(GETDATASISWA, {
         variables : {
             id_siswa : parseInt(localStorage.getItem('id_siswa'))
         }
@@ -111,25 +111,6 @@ function Pilihcalon() {
                 }
             );
         }
-        else if(dataEventSekolah?.event[0].tanggal_mulai > getCurrentDate()){
-            Swal.fire({
-                text: 'Pemilihan ketua OSIS belum dimulai',
-                icon : "success",
-                confirmButtonColor: '#003566',
-                confirmButtonText: 'Ya',
-                reverseButtons: true,
-                allowOutsideClick: false,
-                allowEscapeKey: false
-            }).then((result) =>
-            {
-                if (result.isConfirmed) {
-                    navigate("/home")
-                    
-                  }
-                  
-                }
-            );
-        }
         else if(dataEventSekolah?.event[0].tanggal_selesai < getCurrentDate()){
             Swal.fire({
                 text: 'Pemilihan ketua OSIS sudah dilaksanakan',
@@ -153,24 +134,39 @@ function Pilihcalon() {
 
   return (
     <>
-        <Headersub/>
-        <div className='d-flex flex-row flex-wrap justify-content-center gap-3'>
+    {
+        loadDataSiswa ? (
+            <>
+                {
+                    Swal.showLoading()       
+                }
+            </>
+        ) : (
+            <>
             {
-                dataKandidat?.kandidat?.map((items, i) => {
-                    return(
-                        <div className='d-flex flex-column justify-content-center' key={i}>
-                            <Infokandidat kandidat = {items}/>
-                            <div className='position-relative mt-3'>
-                                <button className='tombol-pilih' onClick={() => handlePilihCalon(items.nama_ketua, items.nama_wakil, items.id_kandidat)}>
-                                    <span className='fw-semibold me-3'>Pilih</span>
-                                    <Icon icon="fluent:vote-20-regular" width="30"/>
-                                </button>
-                            </div>
-                        </div>
-                    )
-                })
+                Swal.close()
             }
-        </div>
+                <Headersub/>
+                <div className='d-flex flex-row flex-wrap justify-content-center gap-3'>
+                    {
+                        dataKandidat?.kandidat?.map((items, i) => {
+                            return(
+                                <div className='d-flex flex-column justify-content-center' key={i}>
+                                    <Infokandidat kandidat = {items}/>
+                                    <div className='position-relative mt-3'>
+                                        <button className='tombol-pilih' onClick={() => handlePilihCalon(items.nama_ketua, items.nama_wakil, items.id_kandidat)}>
+                                            <span className='fw-semibold me-3'>Pilih</span>
+                                            <Icon icon="fluent:vote-20-regular" width="30"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </>
+        )
+    }
     </>
   )
 }

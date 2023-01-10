@@ -1,12 +1,14 @@
-import {  useSubscription } from '@apollo/client'
+import {  useQuery, useSubscription } from '@apollo/client'
 import { Icon } from '@iconify/react'
 import React from 'react'
 import  Table  from 'react-bootstrap/Table'
 import { useNavigate } from 'react-router-dom'
+import Header from '../../component/header/header'
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie'
-import { GETDATASISWA } from '../../libs/client/gql'
+import { GETDATASISWA, GETNAMASEKOLAH } from '../../libs/client/gql'
 import "./userinfo.css"
+import Skeleton from 'react-loading-skeleton'
 
 
 function Userinfo() {
@@ -14,9 +16,14 @@ function Userinfo() {
     const navigate = useNavigate();
     const cookies = new Cookies()
 
-    const {data : dataSiswa} = useSubscription(GETDATASISWA, {
+    const {data : dataSiswa, loading : loadData} = useSubscription(GETDATASISWA, {
         variables : {
             id_siswa : parseInt(localStorage.getItem('id_siswa'))
+        }
+    })
+    const {data : NamaSekolah} = useQuery(GETNAMASEKOLAH, {
+        variables : {
+            id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
         }
     })
 
@@ -51,34 +58,64 @@ function Userinfo() {
             }
         );
     }
-
   return (
     <>
+        <Header/>
         {
             statusmemilih ? (
                 <>
-                    <div className='heading-userinfo'>
-                        <div className='d-flex flex-column justify-content-between'>
-                            <span className='fw-bold'>Terimakasih sudah memilih</span>
-                            <span className='fw-semibold mt-3'>Dalam Pemilihan Ketua dan Wakil ketua Osis di SMK N 1 Purwokerto</span>
-                        </div>
-                        <div>
-                            <img src={require('../../img/userinfo-success.png')} alt="" />
-                        </div>
-                    </div>
+                {
+                    loadData ? (
+                        <>
+                            <div className='d-flex flex-column justify-content-between mx-3 mb-4 mt-4'>
+                                <Skeleton baseColor='#7CA2C6' highlightColor='#C3D3E1' style={{height: "40px"}}/>
+                                <Skeleton width="100%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                <Skeleton width="100%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className='heading-userinfo'>
+                                <div className='d-flex flex-column justify-content-between'>
+                                    <span className='fw-bold'>Terimakasih sudah memilih</span>
+                                    <span className='fw-semibold mt-3'>Dalam Pemilihan Ketua dan Wakil ketua Osis di {NamaSekolah?.sekolah[0].nama_sekolah}</span>
+                                </div>
+                                <div>
+                                    <img src={require('../../img/userinfo-success.png')} alt="" />
+                                </div>
+                            </div>
+                        </>
+                    )
+                }
                 </>
 
             ) : (
                 <>
-                    <div className='heading-userinfo'>
-                        <div className='d-flex flex-column justify-content-between'>
-                            <span className='fw-bold'>Anda belum memilih!</span>
-                            <span className='fw-semibold mt-3'>Dalam Pemilihan Ketua dan Wakil ketua Osis di SMK N 1 Purwokerto</span>
-                        </div>
-                        <div>
-                            <img src={require('../../img/userinfo-not.png')} alt="" />
-                        </div>
-                    </div>
+                {
+                    loadData ? (
+                        <>
+
+                            <div className='d-flex flex-column justify-content-between mx-3 mb-4 mt-4'>
+                                <Skeleton baseColor='#7CA2C6' highlightColor='#C3D3E1' style={{height: "40px"}}/>
+                                <Skeleton width="100%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                <Skeleton width="100%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                            </div>
+
+                        </>
+                    ) : (
+                        <>
+                            <div className='heading-userinfo'>
+                                <div className='d-flex flex-column justify-content-between'>
+                                    <span className='fw-bold'>Anda belum memilih!</span>
+                                    <span className='fw-semibold mt-3'>Dalam Pemilihan Ketua dan Wakil ketua Osis di {NamaSekolah?.sekolah[0].nama_sekolah}</span>
+                                </div>
+                                <div>
+                                    <img src={require('../../img/userinfo-not.png')} alt="" />
+                                </div>
+                            </div>
+                        </>
+                    )
+                }
                 </>
             )
         }
@@ -99,19 +136,43 @@ function Userinfo() {
                     <tbody>
                         <tr>
                             <td className='fw-bold'>Nama</td>
-                            <td align='right'>{dataSiswa?.siswa_by_pk.nama}</td>
+                            {
+                                loadData ? (
+                                    <Skeleton width="100%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                ) : (
+                                    <td align='right'>{dataSiswa?.siswa_by_pk.nama}</td>
+                                )
+                            }
                         </tr>
                         <tr>
                             <td className='fw-bold'>NIS</td>
-                            <td align='right'>{dataSiswa?.siswa_by_pk.nis}</td>
+                            {
+                                loadData ? (
+                                    <Skeleton width="100%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                ) : (
+                                    <td align='right'>{dataSiswa?.siswa_by_pk.nis}</td>
+                                )
+                            }
                         </tr>
                         <tr>
                             <td className='fw-bold'>Kelas</td>
-                            <td align='right'>{dataSiswa?.siswa_by_pk.kelas}</td>
+                            {
+                                loadData ? (
+                                    <Skeleton width="100%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                ) : (
+                                    <td align='right'>{dataSiswa?.siswa_by_pk.kelas}</td>
+                                )
+                            }
                         </tr>
                         <tr>
                             <td className='fw-bold'>Alamat</td>
-                            <td align='right'>{dataSiswa?.siswa_by_pk.alamat_siswa}</td>
+                            {
+                                loadData ? (
+                                    <Skeleton width="100%" baseColor='#7CA2C6' highlightColor='#C3D3E1'/>
+                                ) : (
+                                    <td align='right'>{dataSiswa?.siswa_by_pk.alamat_siswa}</td>
+                                )
+                            }
                         </tr>
                     </tbody>
                 </Table>
