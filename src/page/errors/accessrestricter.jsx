@@ -18,7 +18,7 @@ function Accessrestricted() {
                 <h1 className='fw-bold text-black'>Access restricted</h1>
                 <span>Hanya bisa dilihat oleh pengguna mobile app. </span>
                 <nobr>Anda bisa melihat hasil reporting melalui website berikut.</nobr>
-                <Link to="/" className='mt-3 button-reporting'>Reporting Hasil</Link>
+                <button onClick={() => window.location.replace("https://osis-election-web.vercel.app/")} className='btn mt-3 button-reporting'>Reporting Hasil</button>
             </div>
         </div>
 
