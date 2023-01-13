@@ -1,7 +1,6 @@
 import React from 'react'
 import './accessrestricted.css'
 import bgErrors from '../../img/errors-bg.png'
-import { Link } from 'react-router-dom'
 
 function Accessrestricted() {
   return (
