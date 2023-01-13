@@ -50,17 +50,17 @@ query MyQuery($id_sekolah: Int) {
 `
 
 export const GETREPORTBELUMMEMILIH = gql`
-  subscription MySubscription {
-  siswa_aggregate(where: {status_memilih: {_eq: false}}) {
+subscription MySubscription($id_sekolah: Int!) {
+  siswa_aggregate(where: {id_sekolah: {_eq: $id_sekolah}, status_memilih: {_eq: false}}) {
     aggregate {
-      count(columns: status_memilih)
+      count
     }
   }
 }
 `
 export const GETREPORTBELUMMEMILIHQUERY = gql`
-  query MySubscription {
-  siswa_aggregate(where: {status_memilih: {_eq: false}}) {
+query MySubscription($id_sekolah: Int!) {
+  siswa_aggregate(where: {id_sekolah: {_eq: $id_sekolah}, status_memilih: {_eq: false}}) {
     aggregate {
       count(columns: status_memilih)
     }
@@ -80,10 +80,10 @@ query MyQuery($id_sekolah: Int!) {
 `
 
 export const GETREPORTSUDAHMEMEILIH = gql`
-  subscription MySubscription {
-  siswa_aggregate(where: {status_memilih: {_eq: true}}) {
+subscription MySubscription($id_sekolah: Int!) {
+  siswa_aggregate(where: {id_sekolah: {_eq: $id_sekolah}, status_memilih: {_eq: true}}) {
     aggregate {
-      count(columns: status_memilih)
+      count
     }
   }
 }

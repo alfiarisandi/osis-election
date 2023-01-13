@@ -1,5 +1,5 @@
 import { useLazyQuery, useSubscription } from '@apollo/client'
-import { getDownloadURL, listAll, ref } from 'firebase/storage'
+import { ref } from 'firebase/storage'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import Content from '../../component/content/content'
@@ -18,8 +18,16 @@ export default function Home() {
     }
   })
   const [getKandidatHome, {data : dataKandidat}] = useLazyQuery(GETKANDIDATHOME)
-  const {data : dataReportBelum} = useSubscription(GETREPORTBELUMMEMILIH)
-  const {data : dataReportSudah} = useSubscription(GETREPORTSUDAHMEMEILIH)
+  const {data : dataReportBelum} = useSubscription(GETREPORTBELUMMEMILIH,{
+    variables : {
+      id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+    }
+  })
+  const {data : dataReportSudah} = useSubscription(GETREPORTSUDAHMEMEILIH,{
+    variables : {
+      id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+    }
+  })
 
 
   useEffect(() => {

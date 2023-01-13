@@ -126,7 +126,11 @@ function Hasilpemilihan() {
             }).then(res => setVote(getvote => [...getvote, {'no_urut' : dataKandidat?.kandidat[index].pasangan_urut, 'pasangan_calon' : dataKandidat?.kandidat[index].nama_ketua + ' & ' + dataKandidat?.kandidat[index].nama_wakil, "jumlah_vote" : res.data.vote_aggregate.aggregate.count, "warna" : randomColor({luminosity: 'bright', hue: 'random' ,format: 'rgba',alpha: 0.7 })}]))
           }
           else if (index >= dataKandidat?.kandidat.length) {
-            getGolput().then(res => setVote(getvote => [...getvote, {'no_urut' : '99', 'pasangan_calon' : "Golongan Putih", "jumlah_vote" : res.data.siswa_aggregate.aggregate.count, "warna" : randomColor({luminosity: 'bright', hue: 'random' ,format: 'rgba',alpha: 0.7 })}]))
+            getGolput({
+              variables : {
+                id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+              }
+            }).then(res => setVote(getvote => [...getvote, {'no_urut' : '99', 'pasangan_calon' : "Golongan Putih", "jumlah_vote" : res.data.siswa_aggregate.aggregate.count, "warna" : randomColor({luminosity: 'bright', hue: 'random' ,format: 'rgba',alpha: 0.7 })}]))
           } 
           
         }
