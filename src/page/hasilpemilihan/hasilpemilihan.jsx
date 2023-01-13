@@ -141,6 +141,8 @@ function Hasilpemilihan() {
         //     id_kandidat : items.id_kandidat}
         //   }).then(res => setVote(getvote => [...getvote, {'no_urut' : items.pasangan_urut, 'pasangan_calon' : items.nama_ketua + ' & ' + items.nama_wakil, "jumlah_vote" : res.data.vote_aggregate.aggregate.count, "warna" : randomColor({luminosity: 'bright', hue: 'random' ,format: 'rgba',alpha: 0.7 })}]))
         // });
+
+        
           
       },[ dataKandidat, getVotebyId, getGolput])
       
