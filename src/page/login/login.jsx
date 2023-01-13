@@ -53,7 +53,7 @@ function Login() {
             })
             
         }
-        if(data?.siswa.length === 1){
+        else if(data?.siswa.length === 1){
             Swal.fire({
                 showConfirmButton :false,
                 icon : "success",
@@ -65,7 +65,15 @@ function Login() {
             localStorage.setItem('id_siswa', data.siswa[0].id_siswa)
             localStorage.setItem('id_sekolah', data.siswa[0].id_sekolah)
             setTimeout(() => navigate('/home'), 1300)   
-            
+        }
+        else if(data?.siswa.length === 0){
+            Swal.fire({
+                showConfirmButton :false,
+                icon : "error",
+                timer: 800,
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            })
         }
     },[data,error, loading, navigate])
 
@@ -95,10 +103,13 @@ function Login() {
                                 <Icon icon="codicon:eye-closed" width='20' className='show-password' color='#848484' onClick={ () => setShowPassword(!showPassword)}/>
                             )
                         }
-                        
-
                     </div>
                 </div>
+                {
+                    data?.siswa.length === 0 && (
+                        <span className='mt-1 ms-2 align-self-start text-danger'>* Nis dan password tidak cocok</span>
+                    )
+                }
                 <div className='buttons'>
                     <button className='button-login' onClick={handleLogin}>Login</button>
                 </div>

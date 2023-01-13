@@ -42,12 +42,13 @@ input[type=text]{
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
 }
 
 .show-password{
     position: absolute;
-    right: 8%;
-    bottom: 37%;
+    right: 5%;
+    bottom: 15%;
 }
 
 .buttons{
