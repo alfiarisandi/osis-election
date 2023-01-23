@@ -28,25 +28,27 @@ ChartJS.register(
 );
 function Hasilpemilihan() {
 
-    const {data : dataKandidat} = useQuery(GETKANDIDATHOME, {
-        variables : {
-            id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
-        }
-    })
-
-    const [getVotebyId] = useLazyQuery(GETVOTEPEMILIHAN);
-    const [getGolput] = useLazyQuery(GETREPORTBELUMMEMILIHQUERY)
-    const {data : allDataSiswa} = useQuery(COUNTALLSISWA, {
+  
+  const [getVotebyId] = useLazyQuery(GETVOTEPEMILIHAN);
+  const [getGolput] = useLazyQuery(GETREPORTBELUMMEMILIHQUERY)
+  const {data : allDataSiswa} = useQuery(COUNTALLSISWA, {
+    variables : {
+      id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+    }
+  })
+  
+  const {data : NamaSekolah} = useQuery(GETNAMASEKOLAH, {
+    variables : {
+      id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+    }
+  })
+  
+  const {data : dataKandidat} = useQuery(GETKANDIDATHOME, {
       variables : {
-        id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+          id_sekolah : parseInt(localStorage.getItem('id_sekolah')),
+          id_event : NamaSekolah?.sekolah[0].id_event
       }
-    })
-
-    const {data : NamaSekolah} = useQuery(GETNAMASEKOLAH, {
-      variables : {
-        id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
-      }
-    })
+  })
     const {data : dataEventSekolah} = useSubscription(GETEVENTSEKOLAH, {
       variables : {
         id_sekolah : parseInt(localStorage.getItem('id_sekolah'))

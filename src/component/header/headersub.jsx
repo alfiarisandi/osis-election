@@ -42,7 +42,7 @@ export default function Headersub( props ){
                     <div className='rounded-right' style={{width: "300px"}}>
                         <div className='d-flex flex-column ms-3'>
                             <span className='fw-bold text-white'>Pemilihan Osis</span>
-                            <span className='fw-light text-white'>SMK N 1 Purwokerto</span>
+                            <span className='fw-light text-white'>{props.namaSekolah}</span>
                         </div>
                     </div>
                 </div>

@@ -41,11 +41,12 @@ export default function Home() {
     })
     getKandidatHome({
       variables : {
-        id_sekolah : parseInt(localStorage.getItem('id_sekolah'))
+        id_sekolah : parseInt(localStorage.getItem('id_sekolah')),
+        id_event : NamaSekolah?.sekolah[0].id_event
       }
     })
-    
-  }, [getNamaUser, getNamaSekolah, getKandidatHome])
+
+  }, [getNamaUser, getNamaSekolah, getKandidatHome, NamaSekolah])
 
 
   return (

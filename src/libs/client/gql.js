@@ -23,6 +23,7 @@ export const GETNAMASEKOLAH = gql`
   query MyQuery($id_sekolah: Int) {
   sekolah(where: {id_sekolah: {_eq: $id_sekolah}}) {
     nama_sekolah
+    id_event
   }
   }
 `
@@ -38,8 +39,8 @@ export const GETEVENTSEKOLAH = gql`
 `
 
 export const GETKANDIDATHOME = gql `
-query MyQuery($id_sekolah: Int) {
-  kandidat(where: {id_sekolah: {_eq: $id_sekolah}}, order_by: {pasangan_urut: asc}) {
+query MyQuery($id_sekolah: Int, $id_event : Int) {
+  kandidat(where: {id_sekolah: {_eq: $id_sekolah}, id_event : {_eq : $id_event}}, order_by: {pasangan_urut: asc}) {
     id_kandidat
     nama_ketua
     nama_wakil
