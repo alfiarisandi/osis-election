@@ -1,4 +1,4 @@
-import { Icon } from '@iconify/react';
+// import { Icon } from '@iconify/react';
 import React from 'react'
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -40,7 +40,8 @@ function Header(props) {
                         </div>
                     </div>
                     <div className='circle-home'>
-                            <Icon icon="mdi:user-circle-outline" color='#003566' width="60"/>
+                            <img src={props.logoSekolah} alt=""  />
+                            {/* <Icon icon="mdi:user-circle-outline" color='#003566' width="60"/> */}
                     </div>
                 </div>
             </>
@@ -67,7 +68,8 @@ function Header(props) {
                         </div>
                     </div>
                     <div className='circle-home'>
-                            <Icon icon="mdi:user-circle-outline" color='#003566' width="60"/>
+                            <img src={props.logoSekolah} alt=""  />
+                            {/* <Icon icon="mdi:user-circle-outline" color='#003566' width="60"/> */}
                     </div>
                 </div>
             </>

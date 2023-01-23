@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <div className='container'>
-        <Header dataNamaUser = {dataNamaUSer} loadDataNamaUser = {loadDataNamaUser}/>
+        <Header dataNamaUser = {dataNamaUSer} loadDataNamaUser = {loadDataNamaUser} logoSekolah = {NamaSekolah?.sekolah[0].logo_sekolah}/>
         <Content 
           namaSekolah = {NamaSekolah?.sekolah[0].nama_sekolah}
           eventSekolah ={dataEventSekolah?.event[0]} 

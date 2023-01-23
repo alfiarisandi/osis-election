@@ -24,6 +24,7 @@ export const GETNAMASEKOLAH = gql`
   sekolah(where: {id_sekolah: {_eq: $id_sekolah}}) {
     nama_sekolah
     id_event
+    logo_sekolah
   }
   }
 `
@@ -32,7 +33,6 @@ export const GETEVENTSEKOLAH = gql`
     event(where: {id_sekolah: {_eq: $id_sekolah}}) {
       tanggal_mulai
       tanggal_selesai
-      tanggal_pengumuman
       tahun_ajaran
     }
   }

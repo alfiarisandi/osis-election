@@ -56,6 +56,7 @@ function Hasilpemilihan() {
     })
     
     const [getvote, setVote] = useState([])
+    // const [kandidatTerpilih, setKandidatTerpilih] = useState([])
 
     const searchVote = (key, arr) => {
       for (let i=0; i < arr.length; i++) {
@@ -144,11 +145,28 @@ function Hasilpemilihan() {
         //   }).then(res => setVote(getvote => [...getvote, {'no_urut' : items.pasangan_urut, 'pasangan_calon' : items.nama_ketua + ' & ' + items.nama_wakil, "jumlah_vote" : res.data.vote_aggregate.aggregate.count, "warna" : randomColor({luminosity: 'bright', hue: 'random' ,format: 'rgba',alpha: 0.7 })}]))
         // });
 
+        // if(getvote !== 0) {
+        //   var max = getvote[0]?.jumlah_vote;
+        //   setKandidatTerpilih(getvote[0])
+      
+        //   for (var i = 1; i < getvote?.length; i++) {
+        //       if (getvote[i]?.jumlah_vote > max) {
+        //           // maxIndex = i;
+        //           max = getvote[i]?.jumlah_vote;
+        //           setKandidatTerpilih(getvote[i])
+        //       }
+        //       else if (getvote[i]?.jumlah_vote === max) {
+        //         // maxIndex = i;
+        //         max = getvote[i]?.jumlah_vote;
+        //         setKandidatTerpilih("")
+        //       }
+        //   }
+        // }
+
         
           
       },[ dataKandidat, getVotebyId, getGolput])
       
-
   return (
     <>
       <div className='container mb-5'>
@@ -167,6 +185,18 @@ function Hasilpemilihan() {
                 <span className='fs-5 fw-normal text-center'>Siswa</span>
               </div>
             </div>
+
+            
+            <div className='d-flex flex-row justify-content-between mt-4 p-4 box-chart'>
+              <span className='m-0 fw-bold align-self-center' style={{width:"50%"}}>Dari pemilihan ketua OSIS maka telah ditentukan kandidat Ketua & Wakil</span>
+              <div className='d-flex flex-column justify-content-center align-items-end '>
+                <span className='text-end fw-bold'>Pasangan Calon</span>
+                <span className='text-end'>{getvote?.find(e => e.jumlah_vote === Math.max(...getvote?.map(o => o.jumlah_vote)))?.pasangan_calon}</span>
+                <span className='text-end fw-bold mt-2'>Perolehan Suara</span>
+                <span className='fw-semibold text-white box-suara'>{Math.max(...getvote?.map(o => o.jumlah_vote))} Suara</span>
+              </div>
+            </div>
+          
 
             <div className='d-flex flex-column mt-4 mb-5'>
               {
