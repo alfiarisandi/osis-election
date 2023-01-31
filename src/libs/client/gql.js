@@ -137,6 +137,7 @@ mutation MyMutation($object: vote_insert_input = {}) {
     id_sekolah
     id_kandidat
     id_voting
+    waktu_memilih
   }
 }
 `

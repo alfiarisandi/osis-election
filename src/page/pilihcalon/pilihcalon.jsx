@@ -65,7 +65,8 @@ function Pilihcalon() {
                     id_siswa : parseInt(localStorage.getItem('id_siswa')),
                     id_kandidat : id_kandidat,
                     id_event : NamaSekolah?.sekolah[0].id_event,
-                    kelas_pemilih : dataSiswa?.siswa_by_pk.kelas.split(' ')[0]
+                    kelas_pemilih : dataSiswa?.siswa_by_pk.kelas.split(' ')[0],
+                    waktu_memilih : getCurrentDate()
                 }
             }
         })

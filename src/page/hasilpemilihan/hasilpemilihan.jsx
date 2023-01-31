@@ -59,7 +59,7 @@ function Hasilpemilihan() {
     // const [kandidatTerpilih, setKandidatTerpilih] = useState([])
 
     const searchVote = (key, arr) => {
-      for (let i=0; i < arr.length; i++) {
+      for (let i=0; i < arr?.length; i++) {
         if (arr[i].no_urut === key) {
             return arr[i].jumlah_vote;
         }
