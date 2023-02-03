@@ -7,6 +7,7 @@ import './header.css'
 
 function Header(props) {
     const location = useLocation();
+    const logo = props.logoSekolah
   return (
     <div className='d-flex flex-row justify-content-between align-items-center mt-4 '>
         <div className='bg-header'>
@@ -40,7 +41,7 @@ function Header(props) {
                         </div>
                     </div>
                     <div className='circle-home'>
-                            <img src={props.logoSekolah} alt=""  />
+                            <img src={logo} alt=""  />
                             {/* <Icon icon="mdi:user-circle-outline" color='#003566' width="60"/> */}
                     </div>
                 </div>
@@ -68,7 +69,7 @@ function Header(props) {
                         </div>
                     </div>
                     <div className='circle-home'>
-                            <img src={props.logoSekolah} alt=""  />
+                            <img src={logo} alt=""  />
                             {/* <Icon icon="mdi:user-circle-outline" color='#003566' width="60"/> */}
                     </div>
                 </div>

@@ -178,7 +178,7 @@ function Userinfo() {
                 </Table>
             </div>
         </div>
-        <div className='d-flex justify-content-center px-4 mt-3'>
+        <div className='d-flex justify-content-center px-4 mt-3' style={{marginBottom: "100px"}}>
             <button className='logout' onClick={handleLogout}>Keluar</button>
         </div>
 

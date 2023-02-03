@@ -20,6 +20,13 @@ function Pilihcalon() {
         let year = newDate.getFullYear();
         const separator = '-'
 
+        for (let index = 1; index <= 9; index++) {
+            if (date === index){
+              date = '0'+index
+            }
+            
+          }
+
         return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
     }
 
